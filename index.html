@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>The 50 percent game</title>
+  </head>
+
+  <body>
+    <section id="container"></section>
+    <script id="template" type="text/ractive">
+      <div class="main">
+        <h1>The 50% Game</h1>
+        <div class="status-window">
+          <div class="mdc-card date-window">
+            <h2>時</h2>
+            <p class="date">{{year}} 年 {{month}} 月</p>
+          </div>
+          <div class="mdc-card money-window">
+            <h2>所持金</h2>
+            <p class="money">{{money}} Gold</p>
+          </div>
+        </div>
+        <div class="mdc-card inventory-window">
+          <h2>所持アイテム</h2>
+          <ul class="mdc-list">
+          {{#inventory:i}}
+          <li class="mdc-list-item" tabindex="{{i}}" on-click="['upgrade', .]">
+            <span class="mdc-list-item__text">{{items[.id].name}} L{{.level}} : {{.count}}</span>
+          </li>
+          {{/}}
+          </ul>
+        </div>
+
+        <div class="mdc-card work-window">
+          <h2>お仕事</h2>
+          <ul class="mdc-list">
+          {{#works:i}}
+          <li class="mdc-list-item" tabindex="{{i}}" on-click="['work', .]">
+            <span class="mdc-list-item__text">{{.name}} {{.min}} - {{.max}}</span>
+          </li>
+          {{/}}
+          </ul>
+        </div>
+
+        <div class="mdc-card shop-window">
+          <h2>お店</h2>
+          <ul class="mdc-list">
+          {{#items:i}}
+          <li class="mdc-list-item" tabindex="{{i}}" on-click="['buy', .]">
+            <span class="mdc-list-item__text">{{.name}} L1: 100</span>
+          </li>
+          {{/}}
+          </ul>
+        </div>
+      </div>
+    </script>
+    <div class="mdc-snackbar">
+      <div class="mdc-snackbar__surface">
+        <div class="mdc-snackbar__label" role="status" aria-live="polite"></div>
+        <div class="mdc-snackbar__actions">
+          <button type="button" class="mdc-button mdc-snackbar__action">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>
